@@ -1,0 +1,54 @@
+✅ Problem Statement 
+You're given a list of numbers. 
+
+You need to count how many subarrays (continuous slices of the array) follow this special rule:
+  - The subarray must contain at least two prime numbers, and the difference between the largest and smallest prime numbers in the subarray must be at most k.
+  - This difference between the max and min prime in the subarray is called the prime gap.
+
+If the prime gap is small (less than or equal to k), we call that subarray prime-gap balanced.
+
+Suppose the array is:
+[4, 3, 7, 6, 11]
+And k = 4.
+
+Let’s look at some subarrays:
+
+  [3, 7] → primes = 3 and 7 → gap = 4 → valid ✅
+
+  [7, 6, 11] → primes = 7 and 11 → gap = 4 → valid ✅
+
+  [3, 7, 6, 11] → primes = 3, 7, 11 → gap = 8 → not valid ❌
+
+So the task is to:
+
+  Check all subarrays.
+
+  Count how many of them have at least 2 primes.
+
+  Among those, only count the ones where the prime gap is ≤ k.
+
+  You must do this efficiently, because arrays can be large (up to 10⁵ elements).
+
+✅ Code Explanation
+This solution is optimized to avoid checking every subarray (which would be too slow).
+
+Step-by-step logic:
+      - Sieve of Eratosthenes is used to pre-compute which numbers are prime. This helps quickly check if a number is prime.
+
+      - While scanning the array from left to right (right pointer), the code maintains a sliding window from left to right where:
+
+            It keeps track of indices of prime numbers.
+
+            It also keeps track of the smallest and largest primes in the current window using two double-ended queues (minD, maxD).
+
+      - For each position:
+
+            If the number is a prime, it updates the min and max primes.
+
+            If the gap between the largest and smallest primes becomes greater than k, it shrinks the window from the left until the gap becomes valid again.
+
+      - Whenever the window has at least 2 primes, it counts how many subarrays ending at right are valid:
+
+            It looks at the second last prime in the window to know how many subarrays can be formed that end at the current index and still satisfy the condition.
+
+      - This way, it efficiently counts all valid subarrays in linear time, without checking each one manually.
