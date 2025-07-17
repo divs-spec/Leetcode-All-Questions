@@ -1,0 +1,51 @@
+✅ Problem Statement 
+You are given an array of numbers. Each number is either even (like 2, 4, 6) or odd (like 1, 3, 5).
+
+Your job is to rearrange the array using the minimum number of adjacent swaps so that the parity (even/odd) of the numbers alternates. 
+That means:
+  even, odd, even, odd... or
+  odd, even, odd, even...
+
+But you can only swap adjacent elements (like positions i and i+1), and you want to use the fewest swaps possible to achieve the alternating pattern.
+
+If it's not possible, return -1.
+Let’s say:
+nums = [3, 2, 1, 4]
+We want to rearrange it like:
+3 (odd), 2 (even), 1 (odd), 4 (even)
+This is valid! And it took 2 adjacent swaps to get there.
+
+But if the count of evens and odds is too imbalanced (difference more than 1), you can never alternate perfectly — so return -1 in such cases.
+
+
+✅ Code Explanation
+This code solves the problem efficiently.
+
+Step-by-step explanation:
+First, it collects indices of all even numbers and odd numbers into two separate lists:
+
+For example, if nums = [1, 2, 3], then:
+
+  evenIndices = [1] (2 is at index 1)
+
+  oddIndices = [0, 2] (1 and 3)
+
+Then it checks the count of even and odd numbers:
+
+  If the difference is more than 1, it's impossible to alternate them → return -1.
+
+Next, it tries two patterns:
+
+  Pattern 1: Even at index 0, then odd, even, odd…
+
+  Pattern 2: Odd at index 0, then even, odd, even…
+
+For each pattern, it calculates how many swaps are needed to move the even (or odd) numbers to their target spots (0, 2, 4,…). 
+
+It does this using the calcSwaps function.
+
+The final answer is the minimum swaps required from the two valid patterns.
+
+So, the code smartly checks both valid possibilities and picks the best one. 
+
+It only moves the right numbers into their positions and counts how many steps that would take — all done efficiently.
