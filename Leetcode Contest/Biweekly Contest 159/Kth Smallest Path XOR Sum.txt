@@ -1,0 +1,45 @@
+✅ Problem Statement 
+The problem is about a tree, where each node has a value. 
+A tree is a special type of graph where there are no cycles and each node is connected with edges such that there's exactly one path between any two nodes. 
+You're given a tree with n nodes, where par[i] tells which node is the parent of node i. The root node will have -1 as its parent. 
+Also, every node has a value from the array vals[].
+
+Now, you're given several queries. Each query has two numbers:
+  - A node u.
+  - A number k.
+For each query, you must:
+
+  1. Look at the subtree of node u (which includes u and all its descendants).
+
+  2. For each node in that subtree, calculate the XOR of values from the root of the tree to that node. This is called the path XOR.
+
+  3. Collect all the path XOR values of the nodes in the subtree.
+
+  4. Find the k-th smallest number among those XOR values. If there are fewer than k values, return -1.
+
+For example, if you have the path XOR values [3, 5, 2, 10] in a subtree and k=2, you should return the second smallest number, which is 3.
+
+This problem requires:
+
+  1. Efficient tree traversal,
+
+  2. Finding path XOR values,
+
+  3. Handling multiple queries efficiently.
+
+Due to large constraints (up to 10⁵ nodes and queries), we need smart algorithms like Mo’s algorithm on trees and a binary trie to answer queries fast. 
+Brute force would be too slow.
+
+✅ Code Explanation 
+The code solves the problem in two main steps: preprocessing the tree and answering the queries efficiently.
+
+First, it builds the tree using a parent array. 
+Then, it runs a DFS (Depth-First Search) from the root to record the Euler Tour (which helps track entry and exit times of nodes), and also computes the XOR from the root to each node.
+To answer the queries, it uses a modified version of Mo’s algorithm, which is usually used for range queries. 
+Here, it works on the Euler Tour range of each subtree.
+For efficient k-th smallest number finding, the code uses a Trie data structure (binary prefix tree). Each node in the Trie represents a bit of a number. 
+It stores how many numbers go through each path using a cnt variable. This allows finding the k-th smallest number in logarithmic time.
+While processing queries, it keeps track of how many times each path XOR value appears using a HashMap.
+It includes or excludes XOR values from the Trie as the window moves.
+
+Finally, for each query, if there are enough distinct values, it gets the k-th smallest using the Trie, else returns -1.
