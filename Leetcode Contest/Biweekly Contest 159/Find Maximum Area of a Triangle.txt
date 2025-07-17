@@ -1,0 +1,92 @@
+✅ Actual Problem Statement :
+You are given a 2D array coords of size n x 2, representing the coordinates of n points in an infinite Cartesian plane.
+
+Find twice the maximum area of a triangle with its corners at any three elements from coords, such that at least one side of this triangle is parallel to the x-axis or y-axis. 
+Formally, if the maximum area of such a triangle is A, return 2 * A.
+
+If no such triangle exists, return -1.
+
+Note that a triangle cannot have zero area.
+
+✅ Problem Statement in simple language
+You are given a list of points on a 2D grid. Your task is to form a right-angled triangle using any three of these points such that:
+
+Two of the triangle’s sides are parallel to the x-axis and y-axis (i.e., a right-angled triangle with the right angle at one of the points).
+
+All three triangle vertices must be among the given points.
+
+Your goal is to find the triangle with the maximum possible area.
+Note: Since the area can be a decimal, but the problem asks for the "double area" (twice the actual area), you can skip dividing by 2.
+
+✅ Code & Approach (Simple Explanation)
+The code is written to efficiently find the maximum area triangle that satisfies the conditions.
+
+👣 Step-by-step Explanation:
+1. Track Extremes (min/max) of x and y
+We scan through all the points once to collect:
+
+  - The minimum and maximum x values → helps find width.
+
+  - The minimum and maximum y values → helps find height.
+
+  - For each unique x, we track the smallest and largest y values (i.e., how tall the column is at x).
+
+  - For each unique y, we track the smallest and largest x values (i.e., how wide the row is at y).
+
+This is done using two hash maps:
+
+  x2y: maps each x → min & max y at that x (column extremes).
+
+  y2x: maps each y → min & max x at that y (row extremes).
+
+2. Try Vertical Bases
+We loop through each x in x2y, and:
+
+  - Use the min & max y-values at that x to compute the base (height of vertical line).
+
+  - Try to find a third point to the left or right (toward minX or maxX).
+
+  - The horizontal distance to that third point gives the triangle’s height (remember, vertical base so height is horizontal).
+
+  - Area = base × height (no need to divide by 2 because we’re working with "double area").
+
+3. Try Horizontal Bases
+  - Now we do the same for horizontal lines:
+
+  - Loop through each y in y2x.
+
+  - Use min & max x-values at that y to get the base (width of horizontal line).
+
+  - Find a third point above or below (toward minY or maxY).
+
+  - Vertical distance gives the triangle’s height.
+
+  - Again, compute area = base × height.
+
+4. Keep the Best Area
+  - Throughout both loops, we keep track of the maximum area found.
+  - This value is returned as the final answer.
+
+✅ Helper Function
+  private int[] update(int[] arr, int v)
+
+- This function updates the min and max values in an array:
+- If arr is null, it creates a new array with both values as v.
+- If v is smaller than the current minimum → update min.
+- If v is larger than the current maximum → update max.
+
+🧠 Why this is Efficient
+  Time complexity: O(N), where N = number of points. Just two passes over the data.
+  
+  Space complexity: O(N), because we store data in maps for each unique x and y.
+
+  No nested loops, no brute force check of all point triples (which would be O(N³)).
+
+✅ Summary
+This code:
+
+  - Smartly reduces the problem to just looking at vertical and horizontal base triangles.
+
+  - Avoids brute force.
+
+  - Uses geometry + hash maps to get the answer in linear time.
