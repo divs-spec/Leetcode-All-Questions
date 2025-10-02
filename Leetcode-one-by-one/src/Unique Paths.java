@@ -20,3 +20,20 @@ class Solution {
         return help(0,0,m-1,n-1,arr);
     }
 }
+
+/*
+class Solution {
+    public int uniquePaths(int m, int n) {
+        int[][] memo = new int[m][n];
+        for (int[] row : memo) Arrays.fill(row, -1);
+        return dfs(m-1, n-1, memo);
+    }
+
+    private int dfs(int i, int j, int[][] memo) {
+        if (i == 0 || j == 0) return 1; // base case
+        if (memo[i][j] != -1) return memo[i][j];
+        memo[i][j] = dfs(i-1, j, memo) + dfs(i, j-1, memo);
+        return memo[i][j];
+    }
+}
+*/
