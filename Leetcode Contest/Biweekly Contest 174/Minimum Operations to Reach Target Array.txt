@@ -1,5 +1,7 @@
 https://leetcode.com/problems/minimum-operations-to-reach-target-array/description/
 Leetcode Problem Number : 3810
+Level : medium
+
 problem statement: 
 
 You are given two integer arrays nums and target, each of length n, where nums[i] is the current value at index i and target[i] is the desired value at index i.
