@@ -1,3 +1,5 @@
+https://leetcode.com/problems/number-of-alternating-xor-partitions/description/
+Leetcode Problem Number : 3811
 Problem Statement :
 You are given an integer array nums and two distinct integers target1 and target2.
 
