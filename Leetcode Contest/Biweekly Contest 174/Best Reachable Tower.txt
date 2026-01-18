@@ -1,3 +1,6 @@
+https://leetcode.com/problems/best-reachable-tower/description/
+Leetcode problem number : 3809
+
 Problem Statement:
 
 You are given a 2D integer array towers, where towers[i] = [xi, yi, qi] represents the coordinates (xi, yi) and quality factor qi of the ith tower.
