@@ -1,0 +1,6 @@
+https://leetcode.com/problems/reverse-string-prefix/description/
+Leetcode problem number : 3794
+
+Problem Statement :
+You are given a string s and an integer k.
+Reverse the first k characters of s and return the resulting string.
