@@ -1,5 +1,6 @@
 https://leetcode.com/problems/reverse-string-prefix/description/
 Leetcode problem number : 3794
+Level : easy
 
 Problem Statement :
 You are given a string s and an integer k.
